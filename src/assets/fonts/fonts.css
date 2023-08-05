@@ -1,0 +1,24 @@
+/* define a font family from fonts in this directory */
+@font-face {
+  font-family: "HelveticaNeue";
+  src: url("HelveticaNeueLTStd-Lt.otf") format("opentype");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "HelveticaNeue";
+  src: url("HelveticaNeueLTStd-Md.otf") format("opentype");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "HelveticaNeue";
+  src: url("HelveticaNeueLTStd-Roman.otf") format("opentype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "HelveticaNeue";
+  src: url("HelveticaNeueLTStd-Bd.otf") format("opentype");
+  font-weight: bold;
+}
