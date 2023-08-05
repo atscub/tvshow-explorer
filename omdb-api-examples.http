@@ -1,0 +1,11 @@
+@apikey={{$dotenv NEXT_PUBLIC_OMDB_API_KEY}}
+
+### Get tv series info
+https://www.omdbapi.com/?apikey={{apikey}}&t=Game%20of%20Thrones
+
+### Get tv series info
+https://www.omdbapi.com/?apikey={{apikey}}&t=Game%20of%20Thrones&Season=1
+
+### Get tv series info
+https://www.omdbapi.com/?apikey={{apikey}}&t=Game%20of%20Thrones&Season=1&Episode=2
+
