@@ -1,25 +1,25 @@
 "use client";
-import React from "react";
+import Image from "next/image";
+import React, { ComponentPropsWithoutRef } from "react";
 
-type EpisodeCardProps = {
+interface EpisodeCardProps extends ComponentPropsWithoutRef<"article"> {
   focused?: boolean;
-  episode: {
-    id: number;
-    episodeNumber: number;
-    name: string;
-    plot: string;
-    poster: string;
-    rating: number;
-    air_date: string;
-  };
-};
+  episode: Episode;
+}
 
 export const EpisodeCard: React.FC<EpisodeCardProps> = ({
   episode,
   focused = false,
+  className,
+  ...rest
 }) => {
   return (
-    <article className="episode-card w-[201px]">
+    <article
+      className={`episode-card w-[201px] ${className} ${
+        focused ? "focused" : ""
+      }`}
+      {...rest}
+    >
       <header className="mb-5">
         <div className="episode-number w-[30px] h-[30px] bg-white absolute flex justify-center items-center z-10">
           <span className="font-bold text-base text-black mt-1">
@@ -27,7 +27,9 @@ export const EpisodeCard: React.FC<EpisodeCardProps> = ({
           </span>
         </div>
         <div className="bg-black">
-          <img
+          <Image
+            width={201}
+            height={201 / 1.5}
             className={[
               "w-full aspect-video-thumb object-cover",
               focused ? "opacity-100" : "opacity-40",
