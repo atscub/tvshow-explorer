@@ -12,7 +12,7 @@ export default function Home() {
           poster:
             "https://hbomax-images.warnermediacdn.com/images/GV7xd1QpvacJfPwEAAAGJ/tile?size=1280x720&format=jpeg&partner=hbocom&v=99498c61e3af003c9450b6e0ce0b9288&host=art-gallery.api.hbo.com&w=201",
           rating: 8.1,
-          air_date: "2017-09-25",
+          airDate: "2017-09-25",
         }}
       />
     </main>
