@@ -2,17 +2,31 @@
 import Image from "next/image";
 import React, { ComponentPropsWithoutRef } from "react";
 
+import notFoundPoster from "@/assets/image-not-found.png";
+
 interface EpisodeCardProps extends ComponentPropsWithoutRef<"article"> {
   focused?: boolean;
-  episode: Episode;
+  episode: Failable<Episode>;
 }
 
 export const EpisodeCard: React.FC<EpisodeCardProps> = ({
-  episode,
+  episode: episodeProp,
   focused = false,
   className,
   ...rest
 }) => {
+  const episode: Episode = {
+    id: "0",
+    name: "Episode not found",
+    plot: "Episode not found",
+    poster: notFoundPoster.src,
+    episodeNumber: NaN,
+    rating: NaN,
+    airDate: "unknown",
+
+    ...episodeProp,
+  };
+
   return (
     <article
       className={`episode-card w-[201px] ${className} ${
@@ -23,7 +37,7 @@ export const EpisodeCard: React.FC<EpisodeCardProps> = ({
       <header className="mb-5">
         <div className="episode-number w-[30px] h-[30px] bg-white absolute flex justify-center items-center z-10">
           <span className="font-bold text-base text-black mt-1">
-            {episode.episodeNumber}
+            {!isNaN(episode.episodeNumber) ? episode.episodeNumber : "?"}
           </span>
         </div>
         <div className="bg-black">

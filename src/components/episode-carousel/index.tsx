@@ -4,9 +4,10 @@ import Image from "next/image";
 
 import { EpisodeCard } from "../episode-card";
 import arrow from "./arrow.svg";
+import { isFailed } from "@/typeguards";
 
 interface EpisodeCarouselProps extends React.ComponentPropsWithoutRef<"div"> {
-  episodes: Episode[];
+  episodes: Failable<Episode>[];
 }
 
 export const EpisodeCarousel: React.FC<EpisodeCarouselProps> = ({
@@ -71,7 +72,7 @@ export const EpisodeCarousel: React.FC<EpisodeCarouselProps> = ({
       >
         {episodes.map((episode, index) => (
           <EpisodeCard
-            key={episode.id}
+            key={!isFailed(episode) ? episode.id : `${episode.error}.${index}`}
             className="hover:cursor-pointer hover:scale-110 transition-all transform-gpu first:origin-left last:origin-right"
             episode={episode}
             focused={selectedIndex == index}

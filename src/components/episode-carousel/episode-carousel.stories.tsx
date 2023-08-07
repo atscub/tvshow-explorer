@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { EpisodeCarousel } from "./index";
+import { NotFound } from "../episode-card/episode-card.stories";
 
 export default {
   title: "Components/Episode Carousel",
@@ -43,6 +44,7 @@ const mockedEpisodes = [
     rating: NaN,
     airDate: "23 Oct 2016",
   },
+  { ...NotFound.args?.episode!, episodeNumber: 4 },
   {
     id: "tt5751538",
     episodeNumber: 5,
@@ -53,6 +55,7 @@ const mockedEpisodes = [
     rating: NaN,
     airDate: "06 Nov 2016",
   },
+  { ...NotFound.args?.episode!, episodeNumber: 6 },
   {
     id: "tt5760682",
     episodeNumber: 7,

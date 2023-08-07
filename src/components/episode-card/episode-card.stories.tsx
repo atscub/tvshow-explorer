@@ -36,3 +36,12 @@ export const Blurred: Story = {
     focused: false,
   },
 };
+
+export const NotFound: Story = {
+  args: {
+    focused: true,
+    episode: {
+      error: "Series or episode not found",
+    },
+  },
+};
