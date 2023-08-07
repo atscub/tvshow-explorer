@@ -4,8 +4,11 @@
 https://www.omdbapi.com/?apikey={{apikey}}&t=Game%20of%20Thrones
 
 ### Get tv series info
-https://www.omdbapi.com/?apikey={{apikey}}&t=Game%20of%20Thrones&Season=1
+https://www.omdbapi.com/?apikey={{apikey}}&t=Insecure&Season=1
 
 ### Get tv series info
-https://www.omdbapi.com/?apikey={{apikey}}&t=Game%20of%20Thrones&Season=1&Episode=2
+https://www.omdbapi.com/?apikey={{apikey}}&t=Insecure&Season=1&Episode=5&plot=full
+
+### Get tv series info
+https://www.omdbapi.com/?apikey={{apikey}}&i=tt5024912&Season=1&Episode=4&plot=full
 
