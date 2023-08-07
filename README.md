@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+An interface for visualizing a season of a TV show with all its episodes.
 
 ## Getting Started
 
@@ -12,23 +12,16 @@ yarn dev
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the application running.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Implementation notes
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+I identified two main problems with the API:
 
-## Learn More
+1. It only includes plot and poster information for the episodes when requesting a single episode, which requires sending individual requests for every episode to show in the carousel.
 
-To learn more about Next.js, take a look at the following resources:
+   **Solution**: Fetch the episodes with limited concurrency (5 by default). I chose [p-limit](https://github.com/sindresorhus/p-limit) library by its broad popularity. Other options included a simple implementation with iterators, but I decided to go with a well-tested library. We have tree shaking in Next.js, so the bundle size should not be significantly affected by this choice.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. The API is missing some episodes, for example, episodes 4 and 6 in the Figma design.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   **Solution**: There are two options here, either show the episodes that are available or show a placeholder for the missing episodes. I chose the latter, but in a real environment should be discussed with the team for the best approach.
