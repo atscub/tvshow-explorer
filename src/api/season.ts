@@ -11,7 +11,7 @@ export const getSeason = async ({
   seasonNumber,
 }: SeasonParams): Promise<Season> => {
   const response = await fetch(
-    `https://www.omdbapi.com/?apikey=${process.env.NEXT_PUBLIC_OMDB_API_KEY}&t=${showTitle}&Season=${seasonNumber}`
+    `https://www.omdbapi.com/?apikey=${process.env.OMDB_API_KEY}&t=${showTitle}&Season=${seasonNumber}`
   );
   const remoteSeason = await response.json();
   if (remoteSeason.Response === "False") {

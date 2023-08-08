@@ -1,10 +1,10 @@
-@apikey={{$dotenv NEXT_PUBLIC_OMDB_API_KEY}}
+@apikey={{$dotenv OMDB_API_KEY}}
 
 ### Get tv series info
-https://www.omdbapi.com/?apikey={{apikey}}&t=Game%20of%20Thrones
+https://www.omdbapi.com/?apikey={{apikey}}&t=dexter
 
 ### Get tv series info
-https://www.omdbapi.com/?apikey={{apikey}}&t=Insecure&Season=1
+https://www.omdbapi.com/?apikey={{apikey}}&t=insecure&Season=2
 
 ### Get tv series info
 https://www.omdbapi.com/?apikey={{apikey}}&t=Insecure&Season=1&Episode=5&plot=full
