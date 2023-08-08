@@ -1,7 +1,7 @@
 @apikey={{$dotenv OMDB_API_KEY}}
 
 ### Get tv series info
-https://www.omdbapi.com/?apikey={{apikey}}&t=dexter
+https://www.omdbapi.com/?apikey={{apikey}}&t=insecure
 
 ### Get tv series info
 https://www.omdbapi.com/?apikey={{apikey}}&t=insecure&Season=2
