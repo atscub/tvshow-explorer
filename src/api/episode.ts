@@ -1,14 +1,8 @@
-interface EpisodeParams {
-  showTitle: string;
-  seasonNumber: number;
-  episodeNumber: number;
-}
-
-export const getEpisode = async ({
-  showTitle,
-  seasonNumber,
-  episodeNumber,
-}: EpisodeParams): Promise<Episode> => {
+export const getEpisode = async (
+  showTitle: string,
+  seasonNumber: number,
+  episodeNumber: number
+): Promise<Episode> => {
   const response = await fetch(
     `https://www.omdbapi.com/?apikey=${process.env.OMDB_API_KEY}&t=${showTitle}&Season=${seasonNumber}&Episode=${episodeNumber}&plot=short`
   );
@@ -20,7 +14,7 @@ export const getEpisode = async ({
   return {
     id: episode.imdbID,
     episodeNumber: episode.Episode,
-    name: episode.Title,
+    title: episode.Title,
     plot: episode.Plot,
     poster: episode.Poster,
     rating: episode.imdbRating,

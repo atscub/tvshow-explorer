@@ -17,7 +17,7 @@ export const EpisodeDetailsSidebar: React.FC<EpisodeDetailsSidebarProps> = ({
 }) => {
   const episode: Episode = {
     id: "0",
-    name: "Episode not found",
+    title: "Episode not found",
     plot: "Episode not found",
     poster: notFoundPoster.src,
     episodeNumber: NaN,
@@ -36,7 +36,7 @@ export const EpisodeDetailsSidebar: React.FC<EpisodeDetailsSidebarProps> = ({
       <header className="poster-holder w-full aspect-square relative ">
         <Image
           src={episode.poster}
-          alt={episode.name}
+          alt={episode.title}
           layout="fill"
           objectFit="cover"
         />
@@ -57,7 +57,7 @@ export const EpisodeDetailsSidebar: React.FC<EpisodeDetailsSidebarProps> = ({
       <hr className="h-[1px] text-gray-400" />
 
       <section className="flex flex-col gap-2 pt-12 px-9 pb-10">
-        <h1 className="text-[27px] font-bold leading-8">{episode.name}</h1>
+        <h1 className="text-[27px] font-bold leading-8">{episode.title}</h1>
         <p className="text-lg leading-5">{episode.plot}</p>
       </section>
     </article>

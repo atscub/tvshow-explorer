@@ -17,7 +17,7 @@ export const EpisodeCard: React.FC<EpisodeCardProps> = ({
 }) => {
   const episode: Episode = {
     id: "0",
-    name: "Episode not found",
+    title: "Episode not found",
     plot: "Episode not found",
     poster: notFoundPoster.src,
     episodeNumber: NaN,
@@ -49,12 +49,14 @@ export const EpisodeCard: React.FC<EpisodeCardProps> = ({
               focused ? "opacity-100" : "opacity-40",
             ].join(" ")}
             src={episode.poster}
-            alt={episode.name}
+            alt={episode.title}
           />
         </div>
       </header>
       <section className="card-body text-white">
-        <h1 className="text-title-15 align-middle mb-[10px]">{episode.name}</h1>
+        <h1 className="text-title-15 align-middle mb-[10px]">
+          {episode.title}
+        </h1>
         <p className="text-body-13 overflow-ellipsis line-clamp-3 opacity-80">
           {episode.plot}
         </p>

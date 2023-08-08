@@ -7,7 +7,7 @@ declare type Failable<T> = T | Failed;
 declare interface Episode {
   id: number | string;
   episodeNumber: number;
-  name: string;
+  title: string;
   plot: string;
   poster: string;
   rating: number;
@@ -17,13 +17,12 @@ declare interface Episode {
 declare interface Season {
   id: number | string;
   seasonNumber: number;
-  name: string;
   episodes?: Failable<Episode>[];
 }
 
 declare interface Show {
   id: number | string;
-  name: string;
+  title: string;
   plot: string;
   poster: string;
   rating: number;
