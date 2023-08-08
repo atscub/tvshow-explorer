@@ -10,8 +10,10 @@ export default async function Home({
 }: {
   params: { showId: string; seasonNumber: number };
 }) {
-  const show = await getShow(showId);
-  const season = await getSeason(showId, Number(seasonNumber));
+  const [show, season] = await Promise.all([
+    getShow(showId),
+    getSeason(showId, Number(seasonNumber)),
+  ]);
 
   return (
     <main className="flex h-screen w-screen flex-row items-stretch">
