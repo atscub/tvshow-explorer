@@ -7,7 +7,7 @@ import { EpisodeCard } from "../episode-card";
 import arrow from "./arrow.svg";
 import { isFailed } from "@/typeguards";
 import { getStylePixelValue } from "@/utils";
-import { useOnClickOutside, useWindowSize } from "usehooks-ts";
+import { useMediaQuery, useOnClickOutside, useWindowSize } from "usehooks-ts";
 
 interface EpisodeCarouselProps extends React.ComponentPropsWithoutRef<"div"> {
   episodes: Failable<Episode>[];
@@ -21,9 +21,10 @@ export const EpisodeCarousel: React.FC<EpisodeCarouselProps> = ({
   const searchParams = useSearchParams();
   const episode = searchParams.get("episode");
   const router = useRouter();
+  const aboveMd = useMediaQuery("min-width: 768px");
 
   const carouselRef = useRef<HTMLDivElement>(null);
-  useOnClickOutside(carouselRef, () => {
+  useOnClickOutside(carouselRef, (event) => {
     setSelectedIndex(null);
     const url = new URL(window.location.href);
     url.searchParams.delete("episode");
@@ -64,6 +65,15 @@ export const EpisodeCarousel: React.FC<EpisodeCarouselProps> = ({
       setPages(innerWidth / containerWidth);
     }
   }, [width]);
+
+  useEffect(() => {
+    if (carouselRef.current && episode && !aboveMd) {
+      window.scrollTo({
+        top: window.innerHeight,
+        behavior: "smooth",
+      });
+    }
+  }, [episode, aboveMd]);
 
   const episodeClicked = (index: number) => {
     setSelectedIndex(index);

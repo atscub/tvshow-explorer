@@ -28,14 +28,14 @@ export const EpisodeDetailsSidebar: React.FC<EpisodeDetailsSidebarProps> = ({
   };
   return (
     <article
-      className={`episode-details-sidebar min-w-[400px] max-w-[513px] h-screen flex flex-col bg-white ${
+      className={`episode-details-sidebar w-full sm:min-w-[300px] xl:max-w-[513px] h-screen flex flex-col bg-white ${
         className ? className : ""
       }`}
       {...rest}
     >
       <header className="poster-holder w-full aspect-square relative ">
         <Image
-          src={episode.poster}
+          src={episode.poster ?? notFoundPoster.src}
           alt={episode.title}
           layout="fill"
           objectFit="cover"
