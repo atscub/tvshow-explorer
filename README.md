@@ -1,6 +1,7 @@
 # TV Show Explorer
 An interface for visualizing a season of a TV show with all its episodes.
-![Screenshot from 2023-08-08 20-58-02](https://github.com/atscub/bravoure-tvshow-explorer/assets/29891965/21431169-8938-4251-b430-a2e2da9ff92e)
+![Screenshot from 2023-08-08 21-01-24](https://github.com/atscub/bravoure-tvshow-explorer/assets/29891965/037e6db6-8dbe-47a3-ae2c-11d407b841d0)
+
 
 
 ## Getting Started
