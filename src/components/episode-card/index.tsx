@@ -32,7 +32,7 @@ export const EpisodeCard: React.FC<EpisodeCardProps> = ({
 
   return (
     <article
-      className={`episode-card w-[201px] ${className} ${
+      className={`episode-card w-[201px] select-none ${className} ${
         focused ? "focused" : ""
       }`}
       {...rest}

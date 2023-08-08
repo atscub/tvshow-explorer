@@ -89,7 +89,7 @@ export const EpisodeCarousel: React.FC<EpisodeCarouselProps> = ({
   return (
     <div
       ref={carouselRef}
-      className={`episode-carousel p-8 overflow-hidden ${
+      className={`episode-carousel bg-gradient-to-t from-black/30 p-8 overflow-hidden ${
         className ? className : ""
       }`}
       {...rest}
