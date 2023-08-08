@@ -1,12 +1,13 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { useSearchParams, useRouter } from "next/navigation";
 
 import { EpisodeCard } from "../episode-card";
 import arrow from "./arrow.svg";
 import { isFailed } from "@/typeguards";
 import { getStylePixelValue } from "@/utils";
-import { useWindowSize } from "usehooks-ts";
+import { useOnClickOutside, useWindowSize } from "usehooks-ts";
 
 interface EpisodeCarouselProps extends React.ComponentPropsWithoutRef<"div"> {
   episodes: Failable<Episode>[];
@@ -17,10 +18,21 @@ export const EpisodeCarousel: React.FC<EpisodeCarouselProps> = ({
   className,
   ...rest
 }) => {
-  const { width } = useWindowSize();
+  const searchParams = useSearchParams();
+  const episode = searchParams.get("episode");
+  const router = useRouter();
 
   const carouselRef = useRef<HTMLDivElement>(null);
-  const [selectedIndex, setSelectedIndex] = useState<number>(1);
+  useOnClickOutside(carouselRef, () => {
+    setSelectedIndex(null);
+    const url = new URL(window.location.href);
+    url.searchParams.delete("episode");
+    router.push(url.toString());
+  });
+
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(
+    episode ? Number(episode) - 1 : null
+  );
 
   const [pages, setPages] = useState<number>(1);
   const [pageWidth, setPageWidth] = useState<number>(0);
@@ -33,6 +45,7 @@ export const EpisodeCarousel: React.FC<EpisodeCarouselProps> = ({
   const previousPage = () => setCurrentPage(currentPage - 1);
   const nextPage = () => setCurrentPage(currentPage + 1);
 
+  const { width } = useWindowSize();
   useEffect(() => {
     if (carouselRef.current) {
       const container = carouselRef.current;
@@ -51,6 +64,17 @@ export const EpisodeCarousel: React.FC<EpisodeCarouselProps> = ({
       setPages(innerWidth / containerWidth);
     }
   }, [width]);
+
+  const episodeClicked = (index: number) => {
+    setSelectedIndex(index);
+
+    const episode = episodes[index];
+    if (!isFailed(episode)) {
+      const url = new URL(window.location.href);
+      url.searchParams.set("episode", String(index + 1));
+      router.push(url.toString());
+    }
+  };
 
   return (
     <div
@@ -75,7 +99,7 @@ export const EpisodeCarousel: React.FC<EpisodeCarouselProps> = ({
             className="hover:cursor-pointer hover:scale-110 transition-all transform-gpu first:origin-left last:origin-right"
             episode={episode}
             focused={selectedIndex == index}
-            onClick={() => setSelectedIndex(index)}
+            onClick={() => episodeClicked(index)}
           />
         ))}
       </div>

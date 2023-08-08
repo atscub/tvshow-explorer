@@ -7,9 +7,12 @@ import { getShow } from "@/api/show";
 
 export default async function Home({
   params: { showId, seasonNumber },
+  searchParams,
 }: {
   params: { showId: string; seasonNumber: number };
+  searchParams: Record<string, string>;
 }) {
+  const episode = searchParams["episode"];
   const [show, season] = await Promise.all([
     getShow(showId),
     getSeason(showId, Number(seasonNumber)),
@@ -37,7 +40,11 @@ export default async function Home({
           />
         </div>
       </section>
-      <EpisodeDetailsSidebar episode={(season as Season).episodes![0]} />
+      {episode && (
+        <EpisodeDetailsSidebar
+          episode={(season as Season).episodes![Number(episode) - 1]}
+        />
+      )}
     </main>
   );
 }
