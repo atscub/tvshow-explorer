@@ -20,7 +20,7 @@ export default async function Home({
       <section className="main-container relative min-w-0">
         <Image
           className="opacity-60 -z-10 absolute"
-          src={show.poster}
+          src={show.poster ?? ""}
           alt={show.title}
           layout="fill"
           objectFit="cover"
