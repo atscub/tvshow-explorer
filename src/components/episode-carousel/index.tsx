@@ -5,6 +5,8 @@ import Image from "next/image";
 import { EpisodeCard } from "../episode-card";
 import arrow from "./arrow.svg";
 import { isFailed } from "@/typeguards";
+import { getStylePixelValue } from "@/utils";
+import { useWindowSize } from "usehooks-ts";
 
 interface EpisodeCarouselProps extends React.ComponentPropsWithoutRef<"div"> {
   episodes: Failable<Episode>[];
@@ -15,6 +17,8 @@ export const EpisodeCarousel: React.FC<EpisodeCarouselProps> = ({
   className,
   ...rest
 }) => {
+  const { width } = useWindowSize();
+
   const carouselRef = useRef<HTMLDivElement>(null);
   const [selectedIndex, setSelectedIndex] = useState<number>(1);
 
@@ -26,16 +30,8 @@ export const EpisodeCarousel: React.FC<EpisodeCarouselProps> = ({
   const isFirstPage = currentPage <= 0;
   const isLastPage = currentPage >= pages - 1;
 
-  const goToPage = (page: number) => {
-    if (carouselRef.current) {
-      const container = carouselRef.current;
-      const innerContainer = container.querySelector(
-        ".episode-carousel-cards"
-      )!;
-
-      setCurrentPage(page);
-    }
-  };
+  const previousPage = () => setCurrentPage(currentPage - 1);
+  const nextPage = () => setCurrentPage(currentPage + 1);
 
   useEffect(() => {
     if (carouselRef.current) {
@@ -44,14 +40,17 @@ export const EpisodeCarousel: React.FC<EpisodeCarouselProps> = ({
         ".episode-carousel-cards"
       )!;
 
-      const containerWidth = container.getBoundingClientRect().width;
-      const innerWidth = innerContainer.scrollWidth;
+      const containerWidth = getStylePixelValue(container, "width");
+      const innerWidth =
+        innerContainer.scrollWidth +
+        getStylePixelValue(container, "padding-left") +
+        getStylePixelValue(container, "padding-right");
 
       setPageWidth(containerWidth);
       setTotalWidth(innerWidth);
       setPages(innerWidth / containerWidth);
     }
-  }, []);
+  }, [width]);
 
   return (
     <div
@@ -84,14 +83,14 @@ export const EpisodeCarousel: React.FC<EpisodeCarouselProps> = ({
         <button
           disabled={isFirstPage}
           className="disabled:opacity-20"
-          onClick={() => goToPage(currentPage - 1)}
+          onClick={previousPage}
         >
           <Image className="rotate-180" src={arrow} alt="arrow" />
         </button>
         <button
           disabled={isLastPage}
           className="disabled:opacity-20"
-          onClick={() => goToPage(currentPage + 1)}
+          onClick={nextPage}
         >
           <Image src={arrow} alt="arrow" />
         </button>
