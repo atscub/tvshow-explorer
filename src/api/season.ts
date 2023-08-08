@@ -32,7 +32,7 @@ export const getSeason = async (
     remoteSeason.Episodes[remoteSeason.Episodes.length - 1].Episode
   );
 
-  const limit = pLimit(5);
+  const limit = pLimit(10);
   const episodePromises = Array.from(Array(lastEpisodeNumber).keys()).map(
     (episodeNumber) =>
       limit(() =>

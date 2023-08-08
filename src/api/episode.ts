@@ -6,7 +6,6 @@ export const getEpisode = async (
   episodeNumber: number,
   episodeIMDBId?: string
 ): Promise<Episode> => {
-  console.log("episodeIMDBId", episodeIMDBId);
   const [response, backdrop] = await Promise.all([
     fetch(
       `https://www.omdbapi.com/?apikey=${process.env.OMDB_API_KEY}&i=${showId}&Season=${seasonNumber}&Episode=${episodeNumber}&plot=short`

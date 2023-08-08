@@ -1,11 +1,10 @@
 import Image from "next/image";
-import { Default } from "@/components/episode-carousel/episode-carousel.stories";
 import { EpisodeDetailsSidebar } from "@/components/episode-details-sidebar";
 import { getSeason } from "@/api/season";
 import { EpisodeCarousel } from "@/components/episode-carousel";
 import { getShow } from "@/api/show";
 
-export default async function Home({
+export default async function SeasonPage({
   params: { showId, seasonNumber },
   searchParams,
 }: {

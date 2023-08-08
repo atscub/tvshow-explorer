@@ -4,10 +4,15 @@ interface ShowParams {
   showTitle: string;
 }
 
-export const getShow = async (showId: string): Promise<Show> => {
+export const getShow = async (
+  showId: string,
+  byTitle: boolean = false
+): Promise<Show> => {
   const [response, backdrop] = await Promise.all([
     fetch(
-      `https://www.omdbapi.com/?apikey=${process.env.OMDB_API_KEY}&i=${showId}`
+      `https://www.omdbapi.com/?apikey=${process.env.OMDB_API_KEY}&${
+        byTitle ? "t" : "i"
+      }=${showId}`
     ),
     getBackdropPath(showId),
   ]);
