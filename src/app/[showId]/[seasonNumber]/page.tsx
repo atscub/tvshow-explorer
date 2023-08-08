@@ -6,12 +6,12 @@ import { EpisodeCarousel } from "@/components/episode-carousel";
 import { getShow } from "@/api/show";
 
 export default async function Home({
-  params: { showTitle, seasonNumber },
+  params: { showId, seasonNumber },
 }: {
-  params: { showTitle: string; seasonNumber: number };
+  params: { showId: string; seasonNumber: number };
 }) {
-  const show = await getShow(showTitle);
-  const season = await getSeason(showTitle, Number(seasonNumber));
+  const show = await getShow(showId);
+  const season = await getSeason(showId, Number(seasonNumber));
 
   return (
     <main className="flex h-screen w-screen flex-row items-stretch">

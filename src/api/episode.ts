@@ -1,10 +1,10 @@
 export const getEpisode = async (
-  showTitle: string,
+  showId: string,
   seasonNumber: number,
   episodeNumber: number
 ): Promise<Episode> => {
   const response = await fetch(
-    `https://www.omdbapi.com/?apikey=${process.env.OMDB_API_KEY}&t=${showTitle}&Season=${seasonNumber}&Episode=${episodeNumber}&plot=short`
+    `https://www.omdbapi.com/?apikey=${process.env.OMDB_API_KEY}&i=${showId}&Season=${seasonNumber}&Episode=${episodeNumber}&plot=short`
   );
   const episode = await response.json();
   if (episode.Response === "False") {

@@ -2,11 +2,11 @@ import pLimit from "p-limit";
 import { getEpisode } from "./episode";
 
 export const getSeason = async (
-  showTitle: string,
+  showId: string,
   seasonNumber: number
 ): Promise<Season> => {
   const response = await fetch(
-    `https://www.omdbapi.com/?apikey=${process.env.OMDB_API_KEY}&t=${showTitle}&Season=${seasonNumber}`
+    `https://www.omdbapi.com/?apikey=${process.env.OMDB_API_KEY}&i=${showId}&Season=${seasonNumber}`
   );
   const remoteSeason = await response.json();
   if (remoteSeason.Response === "False") {
@@ -28,7 +28,7 @@ export const getSeason = async (
   const limit = pLimit(5);
   const episodePromises = Array.from(Array(lastEpisodeNumber).keys()).map(
     (episodeNumber) =>
-      limit(() => getEpisode(showTitle, seasonNumber, episodeNumber + 1))
+      limit(() => getEpisode(showId, seasonNumber, episodeNumber + 1))
   );
 
   const episodes = (await Promise.allSettled(episodePromises)).map((res, ind) =>

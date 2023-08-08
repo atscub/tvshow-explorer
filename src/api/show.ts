@@ -2,9 +2,9 @@ interface ShowParams {
   showTitle: string;
 }
 
-export const getShow = async (showTitle: string): Promise<Show> => {
+export const getShow = async (showId: string): Promise<Show> => {
   const response = await fetch(
-    `https://www.omdbapi.com/?apikey=${process.env.OMDB_API_KEY}&t=${showTitle}`
+    `https://www.omdbapi.com/?apikey=${process.env.OMDB_API_KEY}&i=${showId}`
   );
   const show = await response.json();
   if (show.Response === "False") {
