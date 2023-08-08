@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import { EpisodeCard } from "../episode-card";
 import arrow from "./arrow.svg";
@@ -11,15 +11,15 @@ import { useMediaQuery, useOnClickOutside, useWindowSize } from "usehooks-ts";
 
 interface EpisodeCarouselProps extends React.ComponentPropsWithoutRef<"div"> {
   episodes: Failable<Episode>[];
+  selectedEpisode?: number;
 }
 
 export const EpisodeCarousel: React.FC<EpisodeCarouselProps> = ({
   episodes,
+  selectedEpisode,
   className,
   ...rest
 }) => {
-  const searchParams = useSearchParams();
-  const episode = searchParams.get("episode");
   const router = useRouter();
   const aboveMd = useMediaQuery("min-width: 768px");
 
@@ -32,7 +32,7 @@ export const EpisodeCarousel: React.FC<EpisodeCarouselProps> = ({
   });
 
   const [selectedIndex, setSelectedIndex] = useState<number | null>(
-    episode ? Number(episode) - 1 : null
+    selectedEpisode ? selectedEpisode - 1 : null
   );
 
   const [pages, setPages] = useState<number>(1);
@@ -67,13 +67,13 @@ export const EpisodeCarousel: React.FC<EpisodeCarouselProps> = ({
   }, [width]);
 
   useEffect(() => {
-    if (carouselRef.current && episode && !aboveMd) {
+    if (carouselRef.current && selectedEpisode && !aboveMd) {
       window.scrollTo({
         top: window.innerHeight,
         behavior: "smooth",
       });
     }
-  }, [episode, aboveMd]);
+  }, [selectedEpisode, aboveMd]);
 
   const episodeClicked = (index: number) => {
     setSelectedIndex(index);
@@ -82,7 +82,7 @@ export const EpisodeCarousel: React.FC<EpisodeCarouselProps> = ({
     if (!isFailed(episode)) {
       const url = new URL(window.location.href);
       url.searchParams.set("episode", String(index + 1));
-      router.push(url.toString());
+      router.push(url.toString(), { scroll: false });
     }
   };
 

@@ -6,6 +6,9 @@ export default {
   title: "Components/Episode Carousel",
   component: EpisodeCarousel,
   parameters: {
+    nextjs: {
+      appDirectory: true,
+    },
     layout: "centered",
   },
   tags: ["autodocs"],

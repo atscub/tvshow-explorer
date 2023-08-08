@@ -37,6 +37,7 @@ export default async function Home({
           <EpisodeCarousel
             className="max-w-full px-4 md:pl-[76px]"
             episodes={season.episodes ?? []}
+            selectedEpisode={episode ? Number(episode) : undefined}
           />
         </div>
       </section>
