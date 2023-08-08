@@ -21,6 +21,13 @@ export const getSeason = async (
     throw new Error("No episodes found");
   }
 
+  const episodeIdMap = Object.fromEntries(
+    remoteSeason.Episodes.map((episode: any) => [
+      Number(episode.Episode),
+      episode.imdbID,
+    ])
+  );
+
   const lastEpisodeNumber = Number(
     remoteSeason.Episodes[remoteSeason.Episodes.length - 1].Episode
   );
@@ -28,7 +35,14 @@ export const getSeason = async (
   const limit = pLimit(5);
   const episodePromises = Array.from(Array(lastEpisodeNumber).keys()).map(
     (episodeNumber) =>
-      limit(() => getEpisode(showId, seasonNumber, episodeNumber + 1))
+      limit(() =>
+        getEpisode(
+          showId,
+          seasonNumber,
+          episodeNumber + 1,
+          episodeIdMap[episodeNumber + 1]
+        )
+      )
   );
 
   const episodes = (await Promise.allSettled(episodePromises)).map((res, ind) =>
