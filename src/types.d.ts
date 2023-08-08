@@ -9,7 +9,7 @@ declare interface Episode {
   episodeNumber: number;
   title: string;
   plot: string;
-  poster: string;
+  poster?: string;
   rating: number;
   airDate: string;
 }
@@ -24,7 +24,7 @@ declare interface Show {
   id: number | string;
   title: string;
   plot: string;
-  poster: string;
+  poster?: string;
   rating: number;
   seasons?: Failable<Season>[];
 }
