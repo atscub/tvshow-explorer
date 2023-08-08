@@ -22,7 +22,7 @@ export const getShow = async (showId: string): Promise<Show> => {
     plot: show.Plot,
     poster: backdrop
       ? `https://image.tmdb.org/t/p/original${backdrop}`
-      : undefined,
+      : show.Poster,
     rating: show.imdbRating,
   };
 };

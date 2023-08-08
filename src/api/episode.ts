@@ -24,7 +24,9 @@ export const getEpisode = async (
     episodeNumber: episode.Episode,
     title: episode.Title,
     plot: episode.Plot,
-    poster: backdrop ? `https://image.tmdb.org/t/p/w780${backdrop}` : undefined,
+    poster: backdrop
+      ? `https://image.tmdb.org/t/p/w780${backdrop}`
+      : episode.Poster,
     rating: episode.imdbRating,
     airDate: episode.Released,
   };
