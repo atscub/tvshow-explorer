@@ -9,6 +9,16 @@ interface EpisodeCardProps extends ComponentPropsWithoutRef<"article"> {
   episode: Failable<Episode>;
 }
 
+export const EPISODE_NOT_FOUND: Episode = {
+  id: "0",
+  title: "Episode not found",
+  plot: "We could not find any information for this episode.",
+  poster: notFoundPoster.src,
+  episodeNumber: NaN,
+  rating: NaN,
+  airDate: "unknown",
+};
+
 export const EpisodeCard: React.FC<EpisodeCardProps> = ({
   episode: episodeProp,
   focused = false,
@@ -16,14 +26,7 @@ export const EpisodeCard: React.FC<EpisodeCardProps> = ({
   ...rest
 }) => {
   const episode: Episode = {
-    id: "0",
-    title: "Episode not found",
-    plot: "Episode not found",
-    poster: notFoundPoster.src,
-    episodeNumber: NaN,
-    rating: NaN,
-    airDate: "unknown",
-
+    ...EPISODE_NOT_FOUND,
     ...episodeProp,
   };
 
@@ -48,7 +51,7 @@ export const EpisodeCard: React.FC<EpisodeCardProps> = ({
               "w-full aspect-video-thumb object-cover",
               focused ? "opacity-100" : "opacity-40",
             ].join(" ")}
-            src={episode.poster}
+            src={episode.poster ? episode.poster : notFoundPoster.src}
             alt={episode.title}
           />
         </div>
