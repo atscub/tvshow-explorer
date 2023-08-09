@@ -47,6 +47,8 @@ pnpm storybook
 
 Storybook should open in your browser.
 
+We could also publish the storybook to chromatic or our own server for sharing with the team.
+
 ## Tests
 
 We are using jest and react-testing-library for testing. To run the tests, use the following command:
