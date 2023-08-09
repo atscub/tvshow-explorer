@@ -28,7 +28,9 @@ export default async function SeasonPage({
         <div className="h-full flex flex-col justify-end gap-4 sm:gap-[52px]">
           <div className="season-info-container max-w-full px-8 md:px-24 text-white">
             <h2 className="text-2xl -mb-2">Season {season.seasonNumber}</h2>
-            <h1 className="text-7xl font-bold pt-4 -mb-1">{show.title}</h1>
+            <h1 className="text-7xl font-bold pt-4 -mb-1 break-words hyphens-auto">
+              {show.title}
+            </h1>
             <p className="text-2xl max-w-[490px]">{show.plot}</p>
           </div>
           <EpisodeCarousel
