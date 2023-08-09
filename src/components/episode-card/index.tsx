@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import React, { ComponentPropsWithoutRef } from "react";
 
 import notFoundPoster from "@/assets/image-not-found.png";
@@ -44,7 +43,7 @@ export const EpisodeCard: React.FC<EpisodeCardProps> = ({
           </span>
         </div>
         <div className="bg-black">
-          <Image
+          <img
             width={201}
             height={201 / 1.5}
             className={[

@@ -26,7 +26,7 @@ export const getShow = async (
     title: show.Title,
     plot: show.Plot,
     poster: backdrop
-      ? `https://image.tmdb.org/t/p/original${backdrop}`
+      ? `https://image.tmdb.org/t/p/w1280${backdrop}`
       : show.Poster,
     rating: show.imdbRating,
   };

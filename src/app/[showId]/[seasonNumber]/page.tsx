@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { EpisodeDetailsSidebar } from "@/components/episode-details-sidebar";
 import { getSeason } from "@/api/season";
 import { EpisodeCarousel } from "@/components/episode-carousel";
@@ -20,12 +19,11 @@ export default async function SeasonPage({
   return (
     <main className="flex h-screen w-screen sm:flex-row flex-col items-stretch">
       <section className="main-container relative min-w-0 min-h-screen">
-        <Image
-          className="opacity-60 -z-10 absolute"
+        <img
+          className="opacity-60 -z-10 absolute w-full h-full object-cover"
           src={show.poster ?? ""}
           alt={show.title}
-          layout="fill"
-          objectFit="cover"
+          loading="lazy"
         />
         <div className="h-full flex flex-col justify-end gap-4 sm:gap-[52px]">
           <div className="season-info-container max-w-full px-8 md:px-24 text-white">

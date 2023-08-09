@@ -34,11 +34,10 @@ export const EpisodeDetailsSidebar: React.FC<EpisodeDetailsSidebarProps> = ({
       {...rest}
     >
       <header className="poster-holder w-full aspect-square relative ">
-        <Image
+        <img
           src={episode.poster ?? notFoundPoster.src}
           alt={episode.title}
-          layout="fill"
-          objectFit="cover"
+          className="w-full h-full object-cover"
         />
       </header>
 
