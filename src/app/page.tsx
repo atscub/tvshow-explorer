@@ -9,7 +9,7 @@ export default async function HomePage() {
       <div>
         <h1 className="text-4xl font-bold">Search for a TV Show</h1>
         <p>
-          This page is not formated since it wasn't part of the assignment.
+          This page is not formated since it wasn&apos;t part of the assignment.
           However its included for convenience of searching a show
         </p>
       </div>
