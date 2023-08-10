@@ -1,11 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, {
-  ComponentPropsWithoutRef,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import React, { ComponentPropsWithoutRef, useEffect, useState } from "react";
 
 import notFoundPoster from "@/assets/image-not-found.png";
 import Placeholder from "../placeholder";

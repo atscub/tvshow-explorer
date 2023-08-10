@@ -3,7 +3,7 @@ export const getFullEpisode = async (episodeId: string) => {
 
   if (res.ok) {
     const data = await res.json();
-    return data;
+    return data as Episode;
   } else {
     throw new Error("Failed to fetch episode");
   }

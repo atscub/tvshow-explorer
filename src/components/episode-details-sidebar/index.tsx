@@ -1,9 +1,12 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
-import notFoundPoster from "@/assets/image-not-found.png";
 import goldStart from "@/assets/gold-star.svg";
+import { isFailed } from "@/typeguards";
+import { EPISODE_NOT_FOUND } from "../episode-card";
+import { getFullEpisode } from "@/clientServices/full-episode";
+import Placeholder from "../placeholder";
 
 interface EpisodeDetailsSidebarProps
   extends React.ComponentPropsWithoutRef<"article"> {
@@ -15,17 +18,24 @@ export const EpisodeDetailsSidebar: React.FC<EpisodeDetailsSidebarProps> = ({
   className,
   ...rest
 }) => {
-  const episode: Episode = {
-    id: "0",
-    title: "Episode not found",
-    plot: "Episode not found",
-    poster: notFoundPoster.src,
-    episodeNumber: NaN,
-    rating: NaN,
-    airDate: "unknown",
+  const [episode, setEpisode] = useState(() =>
+    !isFailed(episodeProp) ? episodeProp : EPISODE_NOT_FOUND
+  );
 
-    ...episodeProp,
-  };
+  useEffect(() => {
+    const episode = !isFailed(episodeProp) ? episodeProp : EPISODE_NOT_FOUND;
+    setEpisode(episode);
+    if (!isFailed(episode) && !episode.poster && !episode.plot) {
+      getFullEpisode(episode.id)
+        .then((data) => {
+          setEpisode({ ...episode, ...data });
+        })
+        .catch(() => {
+          setEpisode({ ...EPISODE_NOT_FOUND, ...episode });
+        });
+    }
+  }, [episodeProp]);
+
   return (
     <article
       className={`episode-details-sidebar w-full sm:min-w-[300px] xl:max-w-[513px] h-screen flex flex-col bg-white ${
@@ -33,12 +43,16 @@ export const EpisodeDetailsSidebar: React.FC<EpisodeDetailsSidebarProps> = ({
       }`}
       {...rest}
     >
-      <header className="poster-holder w-full aspect-square relative ">
-        <img
-          src={episode.poster ?? notFoundPoster.src}
-          alt={episode.title}
-          className="w-full h-full object-cover"
-        />
+      <header className="bg-black poster-holder w-full aspect-square relative ">
+        {episode.poster ? (
+          <img
+            src={episode.poster}
+            alt={episode.title}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <Placeholder />
+        )}
       </header>
 
       <section className="flex flex-row justify-between items-center pt-12 px-9 pb-10">
