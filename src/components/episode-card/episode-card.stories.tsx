@@ -13,7 +13,7 @@ export default {
 type Story = StoryObj<typeof EpisodeCard>;
 
 const mockedEpisodeInfo = {
-  id: 1,
+  id: "id1",
   episodeNumber: 1,
   title: "Insecure as fuck",
   plot: "In the wake of her 29th birthday, Issa eflects on her life and relationship choices.",
