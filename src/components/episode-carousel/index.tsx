@@ -115,7 +115,7 @@ export const EpisodeCarousel: React.FC<EpisodeCarouselProps> = ({
               onClick={() => episodeClicked(index)}
             />
           ) : (
-            <EpisodeCardSkeleton />
+            <EpisodeCardSkeleton key={index} />
           )
         )}
       </div>
