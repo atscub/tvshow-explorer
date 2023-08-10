@@ -1,4 +1,4 @@
-import { getShow } from "@/api/show";
+import { getShow } from "@/services/show";
 import { redirect, notFound } from "next/navigation";
 import { NextRequest } from "next/server";
 

@@ -5,10 +5,10 @@ declare type Failed = {
 declare type Failable<T> = T | Failed;
 
 declare interface Episode {
-  id: number | string;
+  id: string;
   episodeNumber: number;
   title: string;
-  plot: string;
+  plot?: string;
   poster?: string;
   rating: number;
   airDate: string;

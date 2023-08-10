@@ -4,6 +4,9 @@
 https://www.omdbapi.com/?apikey={{apikey}}&t=insecure
 
 ### Get tv series info
+https://www.omdbapi.com/?apikey={{apikey}}&i=tt5751538
+
+### Get tv series info
 https://www.omdbapi.com/?apikey={{apikey}}&t=insecure&Season=2
 
 ### Get tv series info
@@ -12,3 +15,5 @@ https://www.omdbapi.com/?apikey={{apikey}}&t=Insecure&Season=1&Episode=5&plot=fu
 ### Get tv series info
 https://www.omdbapi.com/?apikey={{apikey}}&i=tt5024912&Season=1&Episode=4&plot=full
 
+###
+http://localhost:3000/api/full-episode/tt5751538

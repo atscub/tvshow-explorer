@@ -3,14 +3,14 @@ import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-import { EpisodeCard } from "../episode-card";
+import { EpisodeCard, EpisodeCardSkeleton } from "../episode-card";
 import arrow from "./arrow.svg";
 import { isFailed } from "@/typeguards";
 import { getStylePixelValue } from "@/utils";
 import { useMediaQuery, useOnClickOutside, useWindowSize } from "usehooks-ts";
 
 interface EpisodeCarouselProps extends React.ComponentPropsWithoutRef<"div"> {
-  episodes: Failable<Episode>[];
+  episodes: (Failable<Episode> | "placeholder")[];
   selectedEpisode?: number;
 }
 
@@ -103,15 +103,21 @@ export const EpisodeCarousel: React.FC<EpisodeCarouselProps> = ({
           )}px)`,
         }}
       >
-        {episodes.map((episode, index) => (
-          <EpisodeCard
-            key={!isFailed(episode) ? episode.id : `${episode.error}.${index}`}
-            className="hover:cursor-pointer hover:scale-110 transition-all transform-gpu first:origin-left last:origin-right"
-            episode={episode}
-            focused={selectedIndex == index}
-            onClick={() => episodeClicked(index)}
-          />
-        ))}
+        {episodes.map((episode, index) =>
+          episode !== "placeholder" ? (
+            <EpisodeCard
+              key={
+                !isFailed(episode) ? episode.id : `${episode.error}.${index}`
+              }
+              className="hover:cursor-pointer hover:scale-110 transition-all transform-gpu first:origin-left last:origin-right"
+              episode={episode}
+              focused={selectedIndex == index}
+              onClick={() => episodeClicked(index)}
+            />
+          ) : (
+            <EpisodeCardSkeleton />
+          )
+        )}
       </div>
       <div className="arrows mt-6 flex flex-row justify-end items-center gap-[15px]">
         <button

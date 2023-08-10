@@ -1,14 +1,9 @@
 import { getBackdropPath } from "./backdrop";
 
-export const getEpisode = async (
-  showId: string,
-  seasonNumber: number,
-  episodeNumber: number,
-  episodeIMDBId?: string
-): Promise<Episode> => {
+export const getEpisode = async (episodeIMDBId?: string): Promise<Episode> => {
   const [response, backdrop] = await Promise.all([
     fetch(
-      `https://www.omdbapi.com/?apikey=${process.env.OMDB_API_KEY}&i=${showId}&Season=${seasonNumber}&Episode=${episodeNumber}&plot=short`
+      `https://www.omdbapi.com/?apikey=${process.env.OMDB_API_KEY}&i=${episodeIMDBId}&plot=short`
     ),
     episodeIMDBId ? getBackdropPath(episodeIMDBId) : undefined,
   ]);
