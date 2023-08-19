@@ -2,7 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Bravoure - Series explorer",
+  title: "TV Show explorer",
   description:
     "Lookup all the tv series you want and their episodes in one place",
 };

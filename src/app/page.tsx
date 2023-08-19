@@ -9,8 +9,9 @@ export default async function HomePage() {
       <div>
         <h1 className="text-4xl font-bold">Search for a TV Show</h1>
         <p>
-          This page is not formated since it wasn&apos;t part of the assignment.
-          However its included for convenience of searching a show
+          Use this ugly home page to search for a TV Show and get all the
+          episodes in a season. The intention is to showcase the design for the
+          season page.
         </p>
       </div>
       <form
@@ -18,6 +19,7 @@ export default async function HomePage() {
         action="/search"
         className="main-container relative grid flex-col gap-4 w-full"
       >
+        <h3 className="text-xl font-bold mb-4">Give it a try: 👇</h3>
         <div className="flex flex-row gap-4">
           <label>Tv Show Title: </label>
           <input className="grow text-black" type="text" name="title" />
